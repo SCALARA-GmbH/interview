@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 describe('Integration', function () {
-  it('Logs in and Posts a blog entry', async () => {
+  it('Posts a blog entry', async () => {
     const addPostResponse = await axios({
-      url: 'http://localhost:3001/posts/new',
+      url: 'http://localhost:5000/posts/new',
       method: 'post',
       data: {
         title: 'Integration Test',
@@ -11,7 +11,7 @@ describe('Integration', function () {
       },
     });
 
-    expect(addPostResponse.data).toEqual('Blog entry added');
+    expect(addPostResponse.data).toEqual({ message: 'New Post Created' });
 
     const getBlogPosts = await axios({
       url: 'http://localhost:5000/posts',
@@ -20,6 +20,10 @@ describe('Integration', function () {
 
     expect(getBlogPosts.data).toEqual(
       expect.arrayContaining([
+        expect.objectContaining({
+          title: 'Integration Test',
+          content: 'is a good way to find subtle bugs',
+        }),
         expect.objectContaining({
           title: 'this is vanilla mysql',
           content:
