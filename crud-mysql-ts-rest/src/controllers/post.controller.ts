@@ -17,12 +17,21 @@ export async function getPosts(
 }
 
 export async function createPost(req: Request, res: Response) {
-  const newPost: Post = req.body;
-  const conn = await connect();
-  await conn.query('INSERT INTO posts SET ?', [newPost]);
-  res.json({
-    message: 'New Post Created',
-  });
+  try {
+    const newPost: Post = req.body;
+    const conn = await connect();
+    const result = await conn.query('INSERT INTO posts SET ?', [newPost]);
+    if (result === 'as expected') { // since i didnt find how an actual result looks like
+      res.json({
+        message: 'New Post Created',
+      });
+    } else {
+      throw new Error('something went not as expected \n'
+        + JSON.stringify(result));
+    }
+  } catch (e) {
+    console.log(e); // better add some sentry, its free
+  }
 }
 
 export async function getPost(req: Request, res: Response) {
