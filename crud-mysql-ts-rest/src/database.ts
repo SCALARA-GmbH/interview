@@ -1,4 +1,4 @@
-import { createPool, Pool } from 'mysql';
+import { createPool, Pool } from 'mysql2/promise';
 
 export async function connect(): Promise<Pool> {
   return createPool({
