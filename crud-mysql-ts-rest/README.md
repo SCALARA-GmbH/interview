@@ -4,6 +4,6 @@
 
 #### database setup
 
-    use sql/db.sql script
+use sql/db.sql script
         
     
