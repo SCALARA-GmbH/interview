@@ -1,0 +1,11 @@
+default:
+  host: 'database'
+  port: 3306
+  username: 'development'
+  password: 'development'
+  database: 'development'
+  type: 'mysql'
+  entities: ['./src/**/*.entity.ts']
+  migrations: ['migrations/*.ts']
+  cli:
+    migrationsDir: './migrations/'

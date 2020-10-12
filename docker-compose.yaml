@@ -1,0 +1,32 @@
+version: '2.3'
+
+services:
+  database:
+    image: mysql:8.0.19
+    container_name: mysql-interview
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    ports:
+      - 3310:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=development
+      - MYSQL_USER=development
+      - MYSQL_PASSWORD=development
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  web-server:
+    build:
+      context: web-server
+    command:
+      [
+          './clean_run.sh',
+      ]
+    ports:
+      - 5000:5000
+    depends_on:
+      - database
+
+volumes:
+  database-data:

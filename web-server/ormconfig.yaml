@@ -1,0 +1,8 @@
+default:
+  host: 'localhost'
+  port: 3310
+  username: 'development'
+  password: 'development'
+  database: 'development'
+  type: 'mysql'
+  entities: ['dist/**/*.entity.js']
