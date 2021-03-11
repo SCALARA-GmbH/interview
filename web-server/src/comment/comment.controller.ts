@@ -35,7 +35,7 @@ export class CommentController {
         const post: Post = await this.postRepository.findOne(data.postId);
 
         if (post === undefined) {
-            throw new HttpException('Incorrect postId submitted.', HttpStatus.BAD_REQUEST);
+            throw new HttpException('Incorrect postId submitted.', HttpStatus.UNPROCESSABLE_ENTITY);
         }
 
         return this.commentRepository.save({ content: data.content, post: post });
