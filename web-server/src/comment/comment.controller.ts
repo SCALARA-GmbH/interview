@@ -43,7 +43,7 @@ export class CommentController {
     }
 
     @Get()
-    async findAll(@Query('post-id') postId: number): Promise<Comment[]> {
+    async findAllCommentsOfPost(@Query('post-id') postId: number): Promise<Comment[]> {
         return this.commentRepository.createQueryBuilder("comment").where("comment.postId = :postId", { postId: postId }).getMany();
     }
 }
