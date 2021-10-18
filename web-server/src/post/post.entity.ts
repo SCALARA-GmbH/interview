@@ -1,8 +1,11 @@
+import { Comment } from '../comment/comment.entity';
+
 import {
   Column,
   CreateDateColumn,
   Entity,
   PrimaryGeneratedColumn,
+  OneToMany
 } from 'typeorm';
 
 @Entity()
@@ -15,4 +18,10 @@ export class Post {
 
   @Column({ nullable: false })
   content: string;
+
+
+  @OneToMany(type => Comment, comment => comment.post)
+  comments: Comment[];
+
+
 }
