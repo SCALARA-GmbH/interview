@@ -26,7 +26,7 @@ export class PostController {
     )
     data: PostDto,
   ): Promise<Post> {
-    return this.postRepository.save({ content: data.content });
+    return this.postRepository.save({ content: data.content, title: data.title });
   }
 
   @Get()
