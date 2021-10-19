@@ -1,5 +1,11 @@
 ## Description
 
+## Run migrations
+
+```bash
+$ yarn typeorm migration:run -t=each
+```
+
 ## Installation
 
 ```bash
