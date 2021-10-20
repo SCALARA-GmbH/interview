@@ -17,11 +17,11 @@ export class Post {
   readonly date: Date;
 
   @Column({ nullable: false })
-  content: string;
+  title: string;
 
+  @Column({ nullable: false })
+  content: string;
 
   @OneToMany(type => Comment, comment => comment.post)
   comments: Comment[];
-
-
 }
