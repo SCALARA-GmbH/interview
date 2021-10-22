@@ -9,6 +9,7 @@ We expect you to complete the following tasks:
 * add functionality to add comments to a single post
 * write tests in [jest](https://github.com/facebook/jest) or [ava](https://github.com/avajs/ava)
 * implement our provided [design](https://scalara.invisionapp.com/spec/ckusi9iaw02m00144f2050lge/select) using [material-ui](https://mui.com/)
+* as a result, you should end up with two pages, one for /posts and one for /comments
 
 Please do not spend more than 3 hours working on this task. Whatever is missing can still be discussed during the pair programming interview.
 
