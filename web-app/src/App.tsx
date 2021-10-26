@@ -7,13 +7,14 @@ import {
 } from "react-router-dom";
 import Home from '../src/modules/Home';
 import Posts from '../src/modules/post/components/Posts';
+import Comments from '../src/modules/comment/components/Comments';
 import './App.css';
 
 function App() {
   return (
         <Router>
           <div>
-            <nav>
+            {/* <nav>
               <ul>
                 <li>
                   <Link to="/">Home</Link>
@@ -25,10 +26,13 @@ function App() {
                   <Link to="/comments">Comments</Link>
                 </li>
               </ul>
-            </nav>
+            </nav>  */}
             <Switch>
               <Route path="/posts">
                 <Posts />
+              </Route>
+              <Route path="/comments/:topicId">
+                <Comments />
               </Route>
               <Route path="/">
                 <Home />
