@@ -19,7 +19,7 @@ import Comments from '../../comment/components/Comments';
 export interface Post {
   title: string;
   content: string;
-  id:number;
+  id: number;
 }
 
 export interface PostDto {
@@ -35,10 +35,19 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const Posts: React.FunctionComponent = () => {
+  const client = axios.create({
+    baseURL: "http://localhost:5000/"
+  });
   const [posts, setPosts] = useState<Post[]>([]);
+  const [error, setError] = useState<string>('');
   const { register, reset, handleSubmit: handleFormSubmit, formState: { errors } } = useForm<PostDto>();
   const createPost = async (data: PostDto) => {
-    await axios.post<PostDto>('http://localhost:5000/posts', data);
+    try {
+      await client.post<PostDto>('posts', data);
+    } catch (err) {
+      setError('error')
+    }
+
   };
   const handleSubmit = async (data: PostDto) => {
     await createPost(data);
@@ -47,7 +56,7 @@ const Posts: React.FunctionComponent = () => {
   };
 
   const fetchPosts = async () => {
-    const result = await axios.get<Post[]>('http://localhost:5000/posts');
+    const result = await client.get<Post[]>('posts');
     setPosts(result.data);
   };
 
@@ -93,14 +102,14 @@ const Posts: React.FunctionComponent = () => {
               {errors.content && <div><span className="red-text">*</span>This field is required</div>}
 
               {posts.map((post, index) =>
-                <div key={index}>
+                <div key={post.id}>
                   <h2>{post.title}</h2>
                   <div>
                     {post.content}
                   </div>
-                  <Link to={`/comments/${post.id}`}>
-                  <CustomButton variant="contained">Post a Comment</CustomButton>
-                 </Link>
+                  <Link to={`/comments?post=${post.id}`}>
+                    <CustomButton variant="contained">Post a Comment</CustomButton>
+                  </Link>
                 </div>
 
               )}</Item>
