@@ -107,7 +107,7 @@ const Posts: React.FunctionComponent = () => {
                   <div>
                     {post.content}
                   </div>
-                  <Link to={`/comments?post=${post.id}`}>
+                  <Link to={`/comments/${post.id}`}>
                     <CustomButton variant="contained">Post a Comment</CustomButton>
                   </Link>
                 </div>
